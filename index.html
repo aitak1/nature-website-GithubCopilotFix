@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nature Connects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f5f3;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #90EE90;
+            padding: 1rem 2rem;
+            border-radius: 0 0 1rem 1rem;
+        }
+
+        .navbar input[type="text"] {
+            margin-right: 1rem;
+        }
+
+        .navbar button {
+            margin-left: 1rem;
+        }
+
+        .navbar a {
+            margin-left: 1rem;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div>
+            <label for="search">Search Location:</label>
+            <input type="text" id="search" placeholder="Search..." title="Search Location" value="lewisville, tx, 75067">
+            <button onclick="search()">Search</button>
+        </div>
+        <div>
+            <a href="#community" id="community">Community</a>
+            <a href="#explore" id="explore">Explore</a>
+        </div>
+    </div>
+    <div class="content" id="content">
+        <!-- Content will be loaded here -->
+    </div>
+
+    <script>
+        var data = {
+            animals: [
+                { name: 'Deer', image: 'deer.jpg', description: 'A deer is a hoofed grazing or browsing animal.' },
+                { name: 'Rabbit', image: 'rabbit.jpg', description: 'A rabbit is a small mammal in the family Leporidae.' }
+            ],
+            plants: [
+                { name: 'Oak Tree', image: 'oak.jpg', description: 'An oak is a tree or shrub in the genus Quercus.' },
+                { name: 'Rose', image: 'rose.jpg', description: 'A rose is a woody perennial flowering plant of the genus Rosa.' }
+            ]
+        };
+
+        function search() {
+            var location = document.getElementById('search').value;
+            // Perform search based on location
+        }
+
+        function loadExplore() {
+            var content = document.getElementById('content');
+            content.innerHTML = '';
+            ['animals', 'plants'].forEach(function(type) {
+                data[type].forEach(function(item) {
+                    var div = document.createElement('div');
+                    div.className = 'item';
+                    div.innerHTML = '<img src="' + item.image + '"><div><h2>' + item.name + '</h2><p>' + item.description + '</p></div>';
+                    content.appendChild(div);
+                });
+            });
+        }
+
+        document.getElementById('explore').addEventListener('click', loadExplore);
+    </script>
+</body>
+</html>
